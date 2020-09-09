@@ -125,16 +125,21 @@
                                 {% for type in shop.enabled_payment_types %}
                                     {{ type | payment_type_svg_tag: class:'payment-icon' }}
                                 {% endfor %}
+                                <img src="{{ 'oxxo.png' | asset_img_url: 'medium' }}" style="max-height: 36px;">
+                                <img src="{{ 'mercadopago.png' | asset_img_url: 'medium' }}" style="max-height: 35px;">
                             </ul>
                         {% endunless %}
                     {% endif %}
                 </div>
 
-                <div class="copyright">
+                <div class="copyright text-center">
                     <p>
                         <a href="{{ routes.root_url }}">&copy; {{ 'now' | date: '%Y' }} {{ shop.name }}</a> | {{ powered_by_link }}
                     </p>
+
+                    <img src="{{ 'protected.png' | asset_img_url: 'medium' }}" style="max-height: 80px;">
                </div>
+
 			</div>
 		</div>
 	</div>

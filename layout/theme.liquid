@@ -67,6 +67,8 @@
 		{{ "customer_area.js" | shopify_asset_url | script_tag }}
 	{% endif %}
 
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+
 	<script type="module" src="{{ 'theme.min.js' | asset_url }}"></script>
 	<script nomodule src="{{ 'theme.legacy.min.js' | asset_url }}"></script>
 </head>
@@ -78,24 +80,28 @@
 	{% endif %}
 
 	<div id="main-body">
-
+		
 		<div id="slideout-overlay"></div>
 
+		<!-- Shipping Announcement -->
 		{% section 'announcement-bar' %}
-		{% section 'header' %}
 
+		<!-- Navbar -->
+		{% section 'header' %}
+		
 		<div id="main" role="main">
 
-			{% unless template == "index" or template == "collection" %}
+			<!-- This will only enter the if the page template is NEITHER the index, a custom page nor a collection -->
+			{% unless template == "index" or template == "collection" or template == "page" %}
 				<div class="container">
 			{% endunless %}
 
 			{{ content_for_layout }}
 
-			{% unless template == "index" or template == "collection" %}
+			{% unless template == "index" or template == "collection" or template == "page" %}
 				</div>
 			{% endunless %}
-
+			
 		</div>
 
 		{% section 'footer' %}
@@ -119,6 +125,12 @@
 			"moneyFormat": {{ shop.money_format | json }}
 		}
 	</script>
+
+	{% if template == "page" %}
+		<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+		<script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAea9d1mwbXVx4xAfJaT6SrWezUM5xfWEI&callback=initMap"></script>
+	{% endif %}
 
 </body>
 
